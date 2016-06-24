@@ -1,4 +1,4 @@
-#### An Ambari Service for Solr1
+#### An Ambari Service for Solr
 Ambari service for easily installing and managing Solr/HdpSearch on both existing HDP clusters or fresh installs via blueprints
 
 Limitations:
