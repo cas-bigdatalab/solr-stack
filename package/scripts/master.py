@@ -90,7 +90,7 @@ class Master(Script):
             print "File not exists : " + item
             Execute(format('mkdir -p {item}'))
             solr_group=params.solr_group
-           solr_user=params.solr_user
+            solr_user=params.solr_user
             Execute(format('chown -R {solr_user}:{solr_group} {item}'))  
     
     #write content in jinja text field to solr.in.sh
