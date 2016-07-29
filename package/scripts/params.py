@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from resource_management import *
-import os
+import os,shutil
 
 # config object that holds the configurations declared in the -config.xml file
 config = Script.get_config()
