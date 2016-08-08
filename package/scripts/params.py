@@ -61,19 +61,20 @@ solr_datadir = config['configurations']['solr-config']['solr.datadir']
 if not solr_datadir.strip():
   solr_datadir=os.path.join(*[server_dir,'solr'])
 else:
-  if os.path.exists(solr_datadir):
-    if not os.path.isfile(solr_datadir+os.path.sep+"solr.xml"):
-      #shutil.copy("/opt/solr/solr-5.5.2/server/solr/solr.xml",solr_datadir +os.path.sep+ "solr.xml")
+  if os.path.exists("/opt/solr"):
+    if os.path.exists(solr_datadir):
+      if not os.path.isfile(solr_datadir+os.path.sep+"solr.xml"):
+        #shutil.copy("/opt/solr/solr-5.5.2/server/solr/solr.xml",solr_datadir +os.path.sep+ "solr.xml")
+        shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"solr.xml", solr_datadir + os.path.sep + "solr.xml")
+      if not os.path.isfile(solr_datadir+os.path.sep+"zoo.cfg"):
+        #shutil.copy("/opt/solr/solr-5.5.2/server/solr/zoo.c,zoo.fg",solr_datadir +os.path.sep+ "zoo.cfg")
+        shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"zoo.cfg", solr_datadir + os.path.sep + "zoo.cfg")
+    else:
+      os.makedirs(solr_datadir)
+      #shutil.copy("/opt/solr/solr-5.5.2/server/solr/solr.xml", solr_datadir + os.path.sep + "solr.xml")
+      #shutil.copy("/opt/solr/solr-5.5.2/server/solr/zoo.cfg", solr_datadir + os.path.sep + "zoo.cfg")
       shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"solr.xml", solr_datadir + os.path.sep + "solr.xml")
-    if not os.path.isfile(solr_datadir+os.path.sep+"zoo.cfg"):
-      #shutil.copy("/opt/solr/solr-5.5.2/server/solr/zoo.c,zoo.fg",solr_datadir +os.path.sep+ "zoo.cfg")
       shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"zoo.cfg", solr_datadir + os.path.sep + "zoo.cfg")
-  else:
-    os.makedirs(solr_datadir)
-    #shutil.copy("/opt/solr/solr-5.5.2/server/solr/solr.xml", solr_datadir + os.path.sep + "solr.xml")
-    #shutil.copy("/opt/solr/solr-5.5.2/server/solr/zoo.cfg", solr_datadir + os.path.sep + "zoo.cfg")
-    shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"solr.xml", solr_datadir + os.path.sep + "solr.xml")
-    shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"zoo.cfg", solr_datadir + os.path.sep + "zoo.cfg")
 
 
 solr_data_resources_dir = os.path.join(solr_datadir,'resources')
