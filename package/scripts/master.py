@@ -30,8 +30,7 @@ class Master(Script):
               mode=0755,
               cd_access='a',
               owner=params.solr_user,
-              group=params.solr_group,
-              recursive=True
+              group=params.solr_group
           )
 
 
@@ -66,8 +65,7 @@ class Master(Script):
               mode=0755,
               cd_access='a',
               owner=params.solr_user,
-              group=params.solr_group,
-              recursive=True
+              group=params.solr_group
           )
               
     #ensure all solr files owned   by solr
