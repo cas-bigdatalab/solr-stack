@@ -34,24 +34,16 @@ for host in config['clusterHostInfo']['zookeeper_hosts']:
 
 
 solr_cloudmode = config['configurations']['solr-config']['solr.cloudmode']
-solr_downloadlocation = config['configurations']['solr-config']['solr.download.location']
-solr_dir = config['configurations']['solr-config']['solr.dir']
+solr_dir = '/var/lib/solr'
 
 solr_znode = config['configurations']['solr-config']['solr.znode']
 solr_port = config['configurations']['solr-env']['solr.port']
 solr_min_mem = config['configurations']['solr-config']['solr.minmem']
 solr_max_mem = config['configurations']['solr-config']['solr.maxmem']
 
-
-if solr_downloadlocation == 'HDPSEARCH':
-  solr_dir='/opt/lucidworks-hdpsearch/solr'
-  solr_bindir = solr_dir + '/bin'
-  cloud_scripts=solr_dir+'/server/scripts/cloud-scripts'  
-  server_dir=os.path.join(*[solr_dir,'server'])
-else:
-  solr_bindir = solr_dir + '/latest/bin' 
-  cloud_scripts=solr_dir+'/latest/server/scripts/cloud-scripts'
-  server_dir=os.path.join(*[solr_dir,'latest','server'])  
+solr_bindir = solr_dir + '/latest/bin' 
+cloud_scripts=solr_dir+'/latest/server/scripts/cloud-scripts'
+server_dir=os.path.join(*[solr_dir,'latest','server'])  
 
 solr_conf = config['configurations']['solr-config']['solr.conf']
 if not solr_conf.strip():
@@ -64,15 +56,11 @@ else:
   if os.path.exists("/opt/solr"):
     if os.path.exists(solr_datadir):
       if not os.path.isfile(solr_datadir+os.path.sep+"solr.xml"):
-        #shutil.copy("/opt/solr/solr-5.5.2/server/solr/solr.xml",solr_datadir +os.path.sep+ "solr.xml")
         shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"solr.xml", solr_datadir + os.path.sep + "solr.xml")
       if not os.path.isfile(solr_datadir+os.path.sep+"zoo.cfg"):
-        #shutil.copy("/opt/solr/solr-5.5.2/server/solr/zoo.c,zoo.fg",solr_datadir +os.path.sep+ "zoo.cfg")
         shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"zoo.cfg", solr_datadir + os.path.sep + "zoo.cfg")
     else:
       os.makedirs(solr_datadir)
-      #shutil.copy("/opt/solr/solr-5.5.2/server/solr/solr.xml", solr_datadir + os.path.sep + "solr.xml")
-      #shutil.copy("/opt/solr/solr-5.5.2/server/solr/zoo.cfg", solr_datadir + os.path.sep + "zoo.cfg")
       shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"solr.xml", solr_datadir + os.path.sep + "solr.xml")
       shutil.copy(os.path.join(*[server_dir,'solr'])+os.path.sep+"zoo.cfg", solr_datadir + os.path.sep + "zoo.cfg")
 

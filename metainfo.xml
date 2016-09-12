@@ -10,7 +10,7 @@
             <!-- Description of service - will be displayed when user clicks add service -->
             <comment>Solr is a search platform from the Apache Lucene project. Its major features include full-text search, hit highlighting, faceted search, dynamic clustering, database integration, and rich document (e.g., Word, PDF) handling.</comment>
             <!-- Version of component-->
-            <version>0.0.1</version>
+            <version>6.2.0.2.5</version>
             
             <!-- Any required services -->
             <requiredServices>
@@ -36,11 +36,11 @@
             <!-- what yum packages will be needed for the setup. These will be installed by install_packages() in master.py -->
              <osSpecifics>
               <osSpecific>
-                <osFamily>redhat6</osFamily>
+                <osFamily>any</osFamily>
                 <packages>
-                   <package><name>wget</name></package>   
-                   <package><name>tar</name></package>                                                                   
-                   <package><name>lsof</name></package>                                                                   
+                   <package>
+                      <name>solr_6.2.0.2.5</name> 
+                   </package>                   
                 </packages>
               </osSpecific>
             </osSpecifics> 
@@ -49,12 +49,12 @@
         	<config-type>solr-config</config-type>
       	    </configuration-dependencies>
             <restartRequiredAfterChange>false</restartRequiredAfterChange>
-        <quickLinksConfigurations>
-            <quickLinksConfiguration>
-            <fileName>quicklinks.json</fileName>
-          <default>true</default>
-        </quickLinksConfiguration>
-      </quickLinksConfigurations>
+            <quickLinksConfigurations>
+               <quickLinksConfiguration>
+                 <fileName>quicklinks.json</fileName>
+                 <default>true</default>
+               </quickLinksConfiguration>
+            </quickLinksConfigurations>
         </service>
     </services>
 </metainfo>

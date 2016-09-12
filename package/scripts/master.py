@@ -42,24 +42,6 @@ class Master(Script):
     )
 
     Execute('echo Solr dir: ' + params.solr_dir)
-      
-    if params.solr_bindir == 'UNDEFINED' or params.cloud_scripts == 'UNDEFINED':
-      Execute('echo Error: solr_bin: ' + params.solr_bindir + ' cloud_scripts: ' + params.cloud_scripts)
-
-               
-    if params.solr_downloadlocation == 'HDPSEARCH':
-      Execute('export JAVA_HOME='+params.java64_home+';yum install -y lucidworks-hdpsearch')
-        
-          
-    if params.solr_downloadlocation == 'HDPSEARCH':
-      Execute('echo HDPSeach mode selected')
-    else:
-      Execute('cd ' + params.solr_dir + '; wget ' + params.solr_downloadlocation + ' -O solr.tgz -a ' + params.solr_log, user=params.solr_user)
-      try:
-          Execute('cd ' + params.solr_dir + '; tar -xvf solr.tgz', user=params.solr_user)
-      except: 
-          Execute ('echo "Solr exist"')
-      Execute('cd ' + params.solr_dir + '; ln -sf solr-* latest', user=params.solr_user)
     
     Directory([params.solr_conf, params.solr_datadir, params.solr_data_resources_dir],
               mode=0755,

@@ -12,18 +12,6 @@
     <description>Whether Solr should be started in Cloud mode</description>
   </property>  
   
-  <property>
-    <name>solr.dir</name>
-    <value>/opt/solr</value>
-    <description>Path to Solr root. If HDPSearch is selected, it will be installed under /opt/lucidworks-hdpsearch/solr/</description>
-  </property>  
-
-  <property>
-    <name>solr.download.location</name>
-    <value>https://archive.apache.org/dist/lucene/solr/5.5.2/solr-5.5.2.tgz</value>
-    <description>Location to download Solr from (.tgz format). Set this to HDPSEARCH to download HDPSearch from yum repo instead</description>
-  </property>     
-  
 
   <property>
     <name>solr.znode</name>
